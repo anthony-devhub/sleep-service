@@ -17,9 +17,10 @@ module V1
         present_error("User hasn't clocked out yet", code: 404) if record
 
         # Create the sleep record
-        record = SleepRecord.create!(user_id: params[:user_id], clock_in: Time.current)
+        SleepRecord.create!(user_id: params[:user_id], clock_in: Time.current)
 
-        present_success(record,'Clocked in successfully')
+        records = SleepRecord.where(user_id: user['id']).order(created_at: :desc)
+        present_success(records,'Clocked in successfully')
       end
 
       desc 'Clock out (end sleeping)'
