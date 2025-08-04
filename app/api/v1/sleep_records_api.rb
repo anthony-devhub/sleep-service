@@ -2,7 +2,6 @@ module V1
   class SleepRecordsApi < Grape::API
     helpers GlobalHelpers
     resource :sleep_records do
-      
       desc 'Clock in (start sleeping)'
       params do
         requires :user_id, type: String, desc: 'ID of the user clocking in'
