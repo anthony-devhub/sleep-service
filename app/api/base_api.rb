@@ -3,8 +3,7 @@ class BaseApi < Grape::API
   prefix :api
   version 'v1', using: :path
 
-  mount V1::UsersApi
-  mount V1::FollowsApi
+  mount V1::SleepRecordsApi
 
   rescue_from ActiveRecord::RecordNotFound do |e|
     present_error(e.message, code: 404)
@@ -19,6 +18,7 @@ class BaseApi < Grape::API
   end
 
   rescue_from :all do |e|
+    puts "1111 #{e.inspect}"
     present_error("Internal server error", code: 500)
   end
 

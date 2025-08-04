@@ -3,6 +3,7 @@ require_relative "boot"
 require "rails/all"
 
 Bundler.require(*Rails.groups)
+Dotenv::Railtie.load if defined?(Dotenv)
 
 module SleepService
   class Application < Rails::Application
