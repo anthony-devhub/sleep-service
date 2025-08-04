@@ -18,6 +18,13 @@ SimpleCov.start 'rails' do
   enable_coverage :branch
   add_filter '/spec/'
 
+  %w[
+    app/jobs/application_job.rb
+    app/controllers/swagger_controller.rb
+    app/controllers/application_controller.rb
+    app/mailers/application_mailer.rb
+  ].each { |path| add_filter path }
+
   add_group 'Services', 'app/services'
   add_group 'Entities', 'app/api/v1/entities'
 end
