@@ -102,4 +102,64 @@ RSpec.describe 'Sleep Records API', type: :request do
       end
     end
   end
+
+  describe 'GET /api/v1/sleep_records/friends' do
+    let(:path) { '/api/v1/sleep_records/friends' }
+    let(:followed_user_id) { SecureRandom.uuid }
+    let(:followed_users) do
+      [
+        { 'id' => followed_user_id, 'name' => 'Friend One' }
+      ]
+    end
+
+    before do
+      allow(UserClient).to receive(:find).with(user_id).and_return(valid_user_response)
+      allow(UserClient).to receive(:following).with(user_id).and_return(followed_users)
+    end
+
+    context 'when user is not found' do
+      before { allow(UserClient).to receive(:find).with(user_id).and_return(nil) }
+
+      it 'returns 404' do
+        get path, params: { user_id: user_id }
+        expect(response).to have_http_status(404)
+        expect(json['message']).to eq('User not found')
+      end
+    end
+
+    context 'when user has no followings' do
+      before { allow(UserClient).to receive(:following).with(user_id).and_return([]) }
+
+      it 'returns empty records' do
+        get path, params: { user_id: user_id }
+        expect(response).to have_http_status(200)
+        expect(json['message']).to eq('No followed users.')
+        expect(json['data']).to eq([])
+      end
+    end
+
+    context 'when there are sleep records for followings' do
+      let!(:record) do
+        SleepRecord.create!(
+          user_id: followed_user_id,
+          clock_in: 10.hours.ago,
+          clock_out: 2.hours.ago,
+          duration: 8.hours.to_i
+        )
+      end
+
+      before do
+        allow(SleepRecordEnricher).to receive(:call).and_call_original
+      end
+
+      it 'returns sorted records' do
+        get path, params: { user_id: user_id }
+        expect(response).to have_http_status(200)
+        expect(json['message']).to eq('Successfully fetched sleep records!')
+        expect(json['data'].length).to eq(1)
+        expect(json['data'].first['user_id']).to eq(followed_user_id)
+      end
+    end
+  end
+
 end
