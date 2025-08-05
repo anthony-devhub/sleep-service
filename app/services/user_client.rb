@@ -1,11 +1,11 @@
 class UserClient
   include HTTParty
-  base_uri ENV.fetch('USER_SERVICE_URL')
+  base_uri ENV.fetch("USER_SERVICE_URL")
 
-  HEADERS = { 'Content-Type' => 'application/json' }
+  HEADERS = { "Content-Type" => "application/json" }
 
   # Set timeout and retry options
-  default_timeout ENV.fetch('DEFAULT_TIMEOUT').to_i
+  default_timeout ENV.fetch("DEFAULT_TIMEOUT").to_i
   maintain_method_across_redirects true
 
   def self.find(user_id)

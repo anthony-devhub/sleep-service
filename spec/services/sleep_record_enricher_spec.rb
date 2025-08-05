@@ -17,7 +17,7 @@ RSpec.describe SleepRecordEnricher do
   describe ".call" do
     it "adds name and formatted duration_string" do
       record = build(:sleep_record, user_id: user_id_1, duration: 3665) # 1h 1m 5s
-      result = described_class.call([record], indexed_users).first
+      result = described_class.call([ record ], indexed_users).first
 
       expect(result[:name]).to eq("Anthony")
       expect(result[:duration_string]).to eq("1 hour, 1 minute, 5 seconds")
@@ -25,14 +25,14 @@ RSpec.describe SleepRecordEnricher do
 
     it "returns nil name if user is missing" do
       record = build(:sleep_record, user_id: user_id_1)
-      result = described_class.call([record], {}).first
+      result = described_class.call([ record ], {}).first
 
       expect(result[:name]).to be_nil
     end
 
     it "returns nil duration_string if duration is 0" do
       record = build(:sleep_record, user_id: user_id_1, duration: 0)
-      result = described_class.call([record], indexed_users).first
+      result = described_class.call([ record ], indexed_users).first
 
       expect(result[:duration_string]).to be_nil
     end

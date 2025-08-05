@@ -460,6 +460,8 @@ DEPENDENCIES
   puma (>= 5.0)
   rails (~> 8.0.2)
   rspec-rails
+  rubocop (~> 1.79)
+  rubocop-rails (~> 2.32)
   rubocop-rails-omakase
   selenium-webdriver
   simplecov

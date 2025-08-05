@@ -15,16 +15,16 @@ module SleepService
       g.orm :active_record, primary_key_type: :uuid
     end
 
-    config.autoload_paths += %W(
+    config.autoload_paths += %W[
       #{config.root}/app/services
       #{config.root}/app/api
       #{config.root}/app/api/entities
-    )
+    ]
 
-    config.eager_load_paths += %W(
+    config.eager_load_paths += %W[
       #{config.root}/app/services
       #{config.root}/app/api
       #{config.root}/app/api/entities
-    )
+    ]
   end
 end

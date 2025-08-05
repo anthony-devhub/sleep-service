@@ -21,6 +21,6 @@ module SleepRecordEnricher
     parts << "#{hours} #{'hour'.pluralize(hours)}" if hours > 0
     parts << "#{minutes} #{'minute'.pluralize(minutes)}" if minutes > 0
     parts << "#{secs} #{'second'.pluralize(secs)}" if secs > 0
-    parts.join(', ')
+    parts.join(", ")
   end
 end

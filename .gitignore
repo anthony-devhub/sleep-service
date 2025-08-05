@@ -36,3 +36,5 @@
 /config/database.yml
 
 /coverage
+
+/.vscode/*

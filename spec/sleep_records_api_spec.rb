@@ -161,5 +161,4 @@ RSpec.describe 'Sleep Records API', type: :request do
       end
     end
   end
-
 end

@@ -41,7 +41,7 @@ RSpec.describe UserClient do
 
       result = described_class.find(user_id)
       expect(result).to be_nil
-    end    
+    end
   end
 
   describe ".following" do
@@ -51,12 +51,12 @@ RSpec.describe UserClient do
       stub_request(:get, url)
         .to_return(
           status: 200,
-          body: { data: [{ id: "456", name: "Follower" }] }.to_json,
+          body: { data: [ { id: "456", name: "Follower" } ] }.to_json,
           headers: { 'Content-Type' => 'application/json' }
         )
 
       result = described_class.following(user_id)
-      expect(result).to eq([{ "id" => "456", "name" => "Follower" }])
+      expect(result).to eq([ { "id" => "456", "name" => "Follower" } ])
     end
   end
 end

@@ -15,13 +15,13 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
-gem 'dotenv-rails', groups: [:development, :test]
-gem 'httparty'
-gem 'grape'
-gem 'grape-entity'
-gem 'grape-swagger'
-gem 'pagy'
-gem 'pg', '>= 0.18', '< 2.0'
+gem "dotenv-rails", groups: [ :development, :test ]
+gem "httparty"
+gem "grape"
+gem "grape-entity"
+gem "grape-swagger"
+gem "pagy"
+gem "pg", ">= 0.18", "< 2.0"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
@@ -56,8 +56,8 @@ group :development, :test do
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
 
-  gem 'factory_bot_rails'
-  gem 'rspec-rails'
+  gem "factory_bot_rails"
+  gem "rspec-rails"
 end
 
 group :development do
@@ -69,6 +69,10 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
-  gem 'simplecov', require: false
-  gem 'webmock'
+  gem "simplecov", require: false
+  gem "webmock"
 end
+
+gem "rubocop", "~> 1.79", group: :development
+
+gem "rubocop-rails", "~> 2.32", group: :development
