@@ -16,15 +16,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_04_051614) do
   enable_extension "pg_trgm"
   enable_extension "pgcrypto"
 
-  create_table "follows", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "follower_id", null: false
-    t.uuid "followed_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "deleted_at"
-    t.index ["follower_id", "followed_id"], name: "index_follows_on_follower_id_and_followed_id", unique: true
-  end
-
   create_table "sleep_records", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "user_id", null: false
     t.datetime "clock_in", null: false
@@ -35,15 +26,4 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_04_051614) do
     t.datetime "deleted_at"
     t.index ["user_id"], name: "index_sleep_records_on_user_id"
   end
-
-  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "deleted_at"
-    t.index ["name"], name: "index_users_on_name", opclass: :gin_trgm_ops, using: :gin
-  end
-
-  add_foreign_key "follows", "users", column: "followed_id"
-  add_foreign_key "follows", "users", column: "follower_id"
 end
