@@ -1,3 +1,5 @@
+require:
+  - rubocop-rails
 # Omakase Ruby styling for Rails
 inherit_gem: { rubocop-rails-omakase: rubocop.yml }
 
@@ -6,3 +8,10 @@ inherit_gem: { rubocop-rails-omakase: rubocop.yml }
 # # Use `[a, [b, c]]` not `[ a, [ b, c ] ]`
 # Layout/SpaceInsideArrayLiteralBrackets:
 #   Enabled: false
+
+AllCops:
+  TargetRubyVersion: 3.4.5
+  NewCops: enable
+
+Rails:
+  Enabled: true
