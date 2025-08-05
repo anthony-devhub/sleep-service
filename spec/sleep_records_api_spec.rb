@@ -142,9 +142,9 @@ RSpec.describe 'Sleep Records API', type: :request do
       let!(:record) do
         SleepRecord.create!(
           user_id: followed_user_id,
-          clock_in: 10.hours.ago,
+          clock_in: 10.hours.ago + 30.minutes + 30.seconds,
           clock_out: 2.hours.ago,
-          duration: 8.hours.to_i
+          duration: 7.hours.ago + 30.minutes + 30.seconds
         )
       end
 
