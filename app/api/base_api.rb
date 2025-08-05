@@ -18,7 +18,6 @@ class BaseApi < Grape::API
   end
 
   rescue_from :all do |e|
-    puts "1111 #{e.inspect}"
     present_error("Internal server error", code: 500)
   end
 

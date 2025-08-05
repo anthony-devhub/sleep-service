@@ -9,13 +9,17 @@ class UserClient
   maintain_method_across_redirects true
 
   def self.find(user_id)
-    response = get("/api/v1/users/#{user_id}", headers: HEADERS)
-    with_rescue { parse_response(response) }
+    with_rescue do
+      response = get("/api/v1/users/#{user_id}", headers: HEADERS)
+      parse_response(response)
+    end
   end
 
   def self.following(user_id)
-    response = get("/api/v1/users/#{user_id}/following", headers: HEADERS)
-    with_rescue { parse_response(response) }
+    with_rescue do
+      response = get("/api/v1/users/#{user_id}/following", headers: HEADERS)
+      parse_response(response)
+    end
   end
 
   def self.parse_response(response)

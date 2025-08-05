@@ -18,16 +18,6 @@ module GlobalHelpers
     [pagy, records]
   end
 
-  def pagy_metadata(pagy)
-    {
-      page: pagy.page,
-      count: pagy.count,
-      pages: pagy.pages,
-      next: pagy.next,
-      prev: pagy.prev
-    }
-  end
-
   def present_paginated_success(collection, pagy, message = 'Success', status: 200)
     status(status)
     {
