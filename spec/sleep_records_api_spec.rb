@@ -8,11 +8,11 @@ RSpec.describe 'Sleep Records API', type: :request do
   describe 'POST /api/v1/sleep_records' do
     context 'when the user does not exist' do
       before do
-        allow(UserClient).to receive(:find).with(user_id).and_return(nil)
+        allow(UserClient).to receive(:find).with("123").and_return(nil)
       end
 
       it 'returns 404 with user not found' do
-        post '/api/v1/sleep_records', params: { user_id: user_id }
+        post '/api/v1/sleep_records', params: { user_id: "123" }
         expect(response.status).to eq(404)
         expect(json['message']).to eq('User not found')
       end

@@ -19,6 +19,7 @@ SimpleCov.start 'rails' do
   add_filter '/spec/'
 
   %w[
+    app/api/base_api.rb
     app/jobs/application_job.rb
     app/controllers/swagger_controller.rb
     app/controllers/application_controller.rb
