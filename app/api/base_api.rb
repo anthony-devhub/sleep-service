@@ -28,8 +28,8 @@ class BaseApi < Grape::API
       mount_path: '/swagger',
       hide_format: true,
       info: {
-        title: 'Test Prep API',
-        description: 'API documentation for the Test Prep'
+        title: 'Sleep Records API',
+        description: 'API documentation for the Sleep Records'
       }
     )
   end
