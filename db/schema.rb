@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_04_051614) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_06_021244) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -24,6 +24,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_04_051614) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
+    t.index ["clock_in"], name: "index_sleep_records_on_clock_in"
+    t.index ["deleted_at"], name: "index_sleep_records_on_deleted_at"
+    t.index ["duration"], name: "index_sleep_records_on_duration"
+    t.index ["user_id", "clock_out"], name: "index_sleep_records_on_user_id_and_clock_out"
     t.index ["user_id"], name: "index_sleep_records_on_user_id"
   end
 end
