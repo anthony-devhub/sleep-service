@@ -73,6 +73,6 @@ group :test do
   gem "webmock"
 end
 
-gem "rubocop", "~> 1.79", group: :development
+gem "rubocop", "~> 1.81", group: :development
 
 gem "rubocop-rails", "~> 2.32", group: :development
